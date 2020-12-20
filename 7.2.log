@@ -1,0 +1,82 @@
+------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\Manish\econometrics2\7.2.log
+  log type:  text
+ opened on:   5 Jul 2020, 23:35:15
+
+. import delimited "E:\Manish\econometrics2\diabetes.csv", clear 
+(9 vars, 768 obs)
+
+. describe
+
+Contains data
+  obs:           768                          
+ vars:             9                          
+------------------------------------------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+------------------------------------------------------------------------------------------------------------------
+pregnancies     byte    %8.0g                 Pregnancies
+glucose         int     %8.0g                 Glucose
+bloodpressure   int     %8.0g                 BloodPressure
+skinthickness   byte    %8.0g                 SkinThickness
+insulin         int     %8.0g                 Insulin
+bmi             float   %9.0g                 BMI
+diabetespedig~n float   %9.0g                 DiabetesPedigreeFunction
+age             byte    %8.0g                 Age
+outcome         byte    %8.0g                 Outcome
+------------------------------------------------------------------------------------------------------------------
+Sorted by: 
+     Note: Dataset has changed since last saved.
+
+. probit outcome pregnancies glucose bloodpressure skinthickness insulin bmi diabetespedig~n age
+
+Iteration 0:   log likelihood = -496.74196  
+Iteration 1:   log likelihood = -363.97551  
+Iteration 2:   log likelihood = -362.78854  
+Iteration 3:   log likelihood =  -362.7882  
+Iteration 4:   log likelihood =  -362.7882  
+
+Probit regression                               Number of obs     =        768
+                                                LR chi2(8)        =     267.91
+                                                Prob > chi2       =     0.0000
+Log likelihood =  -362.7882                     Pseudo R2         =     0.2697
+
+------------------------------------------------------------------------------------------
+                 outcome |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------------+----------------------------------------------------------------
+             pregnancies |   .0722845   .0181987     3.97   0.000     .0366158    .1079533
+                 glucose |   .0198836   .0019947     9.97   0.000      .015974    .0237932
+           bloodpressure |  -.0079256   .0030663    -2.58   0.010    -.0139353   -.0019158
+           skinthickness |   .0012371   .0040235     0.31   0.758    -.0066489     .009123
+                 insulin |  -.0007415    .000521    -1.42   0.155    -.0017627    .0002796
+                     bmi |   .0523173   .0083703     6.25   0.000     .0359118    .0687228
+diabetespedigreefunction |   .4982376   .1641352     3.04   0.002     .1765385    .8199367
+                     age |   .0101976   .0054041     1.89   0.059    -.0003942    .0207894
+                   _cons |  -4.863753   .3844068   -12.65   0.000    -5.617176    -4.11033
+------------------------------------------------------------------------------------------
+
+. mfx
+
+Marginal effects after probit
+      y  = Pr(outcome) (predict)
+         =  .30306126
+------------------------------------------------------------------------------
+variable |      dy/dx    Std. Err.     z    P>|z|  [    95% C.I.   ]      X
+---------+--------------------------------------------------------------------
+pregna~s |   .0252479      .00635    3.97   0.000   .012794  .037702   3.84505
+ glucose |    .006945       .0007    9.86   0.000   .005565  .008325   120.895
+bloodp~e |  -.0027683      .00107   -2.58   0.010  -.004869 -.000667   69.1055
+skinth~s |   .0004321      .00141    0.31   0.759  -.002323  .003187   20.5365
+ insulin |   -.000259      .00018   -1.42   0.155  -.000616  .000098   79.7995
+     bmi |   .0182736      .00289    6.33   0.000   .012611  .023936   31.9926
+diabet~n |   .1740266      .05742    3.03   0.002   .061493   .28656   .471876
+     age |   .0035619      .00188    1.89   0.058  -.000126   .00725   33.2409
+------------------------------------------------------------------------------
+
+. log close
+      name:  <unnamed>
+       log:  E:\Manish\econometrics2\7.2.log
+  log type:  text
+ closed on:   5 Jul 2020, 23:36:05
+------------------------------------------------------------------------------------------------------------------

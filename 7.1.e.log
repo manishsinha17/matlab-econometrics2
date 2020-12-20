@@ -1,0 +1,54 @@
+------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\Manish\econometrics2\7.1.e.log
+  log type:  text
+ opened on:   4 Jul 2020, 23:59:41
+
+. generate maleage = male * age
+
+. probit insured age male maleage totincome
+
+Iteration 0:   log likelihood = -77.277341  
+Iteration 1:   log likelihood = -61.853907  
+Iteration 2:   log likelihood =  -58.73979  
+Iteration 3:   log likelihood = -58.693367  
+Iteration 4:   log likelihood = -58.693345  
+Iteration 5:   log likelihood = -58.693345  
+
+Probit regression                               Number of obs     =        200
+                                                LR chi2(4)        =      37.17
+                                                Prob > chi2       =     0.0000
+Log likelihood = -58.693345                     Pseudo R2         =     0.2405
+
+------------------------------------------------------------------------------
+     insured |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         age |   .0294293   .0130536     2.25   0.024     .0038448    .0550138
+        male |   .4024713   .7449339     0.54   0.589    -1.057572    1.862515
+     maleage |   .0013645   .0175057     0.08   0.938    -.0329461     .035675
+   totincome |   .0467975   .0119424     3.92   0.000     .0233909    .0702041
+       _cons |  -1.333487   .6471913    -2.06   0.039    -2.601959   -.0650153
+------------------------------------------------------------------------------
+Note: 0 failures and 4 successes completely determined.
+
+. mfx
+
+Marginal effects after probit
+      y  = Pr(insured) (predict)
+         =  .95091848
+------------------------------------------------------------------------------
+variable |      dy/dx    Std. Err.     z    P>|z|  [    95% C.I.   ]      X
+---------+--------------------------------------------------------------------
+     age |   .0029906       .0015    1.99   0.047   .000045  .005936    45.425
+    male*|    .042333      .08285    0.51   0.609  -.120045  .204711      .535
+ maleage |   .0001387      .00178    0.08   0.938  -.003343   .00362    25.105
+totinc~e |   .0047556      .00114    4.19   0.000   .002529  .006982   29.9356
+------------------------------------------------------------------------------
+(*) dy/dx is for discrete change of dummy variable from 0 to 1
+
+. log close
+      name:  <unnamed>
+       log:  E:\Manish\econometrics2\7.1.e.log
+  log type:  text
+ closed on:   5 Jul 2020, 00:10:27
+------------------------------------------------------------------------------------------------------------------
